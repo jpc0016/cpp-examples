@@ -11,9 +11,19 @@
 #include <cstdio>
 #include <cstddef>
 
+void taunt(){
+  printf("\nHey, laser lips, your mama was a snow blower.\n");
+}
+
 int main(){
 
   // size_t encodes the size of objects
+  // typically used in array indexing and loop counting
+  // For more on size_t:
+  //    https://en.cppreference.com/w/c/types/size_t
+
+
+
   // %zd for decimal representations
   // %zx for hex representations
   // sizeof() returns size in bytes
@@ -28,6 +38,7 @@ int main(){
   size_t size_ll = sizeof(long long);
   printf("long long: %zd\n", size_ll);
 
+  taunt();
 
   return 0;
 }
