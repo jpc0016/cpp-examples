@@ -3,7 +3,7 @@
 *
 * for_loop.cpp
 *
-* Demonstrating for loop; pages 43 - 44
+* Demonstrating for loop; pages 43 - 45
 */
 
 // import <cstddef> again
@@ -50,6 +50,14 @@
     }
 
     printf("\nThe second maximum value is %lu\n", new_max);
+
+
+    // Use sizeof() operator to obtain size of an array in bytes
+    // Needs to be divided by size of data type to get number of elements. This
+    // seems a bit counter-intuitive compared to python
+    size_t n_elements = sizeof(new_values) / sizeof(unsigned long);
+    printf("%zd\n", n_elements);
+
 
     return 0;
   }
