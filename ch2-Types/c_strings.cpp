@@ -33,5 +33,28 @@ int main(){
 
   printf("A book holds a %s", house);
 
+
+  // Printing alphabet. Loop stops at 26 because alphabet[] contains NULL byte
+  // for 0 to 25, stops at 26
+  char alphabet[27];
+  for(size_t i=0; i<26; i++){
+
+    // Start at decimal offset 97 (0x61) which is 'a'
+    alphabet[i] = i + 97;
+  }
+  // Set NULL byte
+  alphabet[26] = 0;
+  printf("%s\n", alphabet);
+
+  for(size_t i = 0; i < 26; i++){
+
+    // Start at decimal offset 65 (0x41) which is 'A'
+    alphabet[i] = i + 65;
+  }
+
+  // Set NULL byte
+  alphabet[26] = 0;
+  printf("%s\n", alphabet);
+
   return 0;
 }

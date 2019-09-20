@@ -12,7 +12,8 @@
   // Initialize arrays by declaring their size
   int array[100];
 
-  // Or dynamically by using brackets
+  // Or literally by using brackets.  Brackets must be used if there
+  // is no size in []
   // Remember array indexing starts at 0
   int my_array[] = {1, 2, 3, 4};
 
