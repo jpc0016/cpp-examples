@@ -13,6 +13,8 @@
 
 #include <cstdio>
 
+// Enumerations are data-types that map out user-defined constants.  The class keyword
+// means the enumeration must obey scoping rules
 enum class Race {
   Dinan,
   Teklan,

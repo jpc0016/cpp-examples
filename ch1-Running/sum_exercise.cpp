@@ -1,7 +1,7 @@
 /*
 * Ch1 Exercise 1-1, 1-2, and 1-3
 *
-* sum.cpp
+* sum_exercise.cpp
 *
 * Create a function called absolute_value() that returns the absolute absolute_value
 * of a single argument; page 28

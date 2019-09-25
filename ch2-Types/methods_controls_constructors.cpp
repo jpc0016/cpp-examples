@@ -1,7 +1,7 @@
 /*
 * Ch2 Example
 *
-* method_example.cpp
+* methods_controls_constructors.cpp
 *
 * Demonstrating methods, access controls, and constructors; pages 55 - 59
 * Member functions of classes
