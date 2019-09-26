@@ -4,7 +4,7 @@
 * initialize_PODs.cpp
 *
 * Show syntax for initializing PODs and arrays; pages 60 - 61
-*
+* Intro to braced initialization
 */
 
 #include <cstdio>
