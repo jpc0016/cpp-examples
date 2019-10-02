@@ -1,15 +1,16 @@
 /*
 * Ch3 Example
 *
-* forward-linked-list.cpp
+* this-example.cpp
 *
-* Demonstrate forward-linked lists; pages 78 - 79
+* Example of this pointer; pages 80 - 81
 *
-* Listing 3-9 and 3-10
-* Each element holds a pointer to the next element.  Last element of the linked
-* lists holds a nullptr.  Elements can be discontinuous in memory.
+* Listing 3-12
+* Sometimes the current object needs to be accessed when writing a method.
+* 'This' is usually implicit when accessing members, but sometimes disambiguation is required.
+* Same code as forward-linked-list.cpp
 *
-* Stormtrooper designations
+* Stormtrooper designations from forward-linked-list.cpp (Listing 3-9)
 */
 
 #include <cstdio>
@@ -23,11 +24,11 @@ struct Element {
 
     // member 'next' of new_element is set to the current 'next' (or 'next' of 'this')
     // In a new linked-list, current 'next' is nullptr
-    new_element -> next = next;
+    new_element -> next = this->next;
 
     // 'next' of 'this' is set to the new element
     // This "inserts" new_element between current 'next' and nullptr
-    next = new_element;
+    this->next = new_element;
   }
 
 // These attributes are specific to the stormtrooper example
@@ -62,7 +63,7 @@ int main() {
   // Finally set cursor to the next element
   for (Element *cursor = &trooper1; cursor; cursor = cursor->next){
     printf("Stormtrooper: %c%c-%d\n",
-        // For each element, access their members in the print statment 
+        // For each element, access their members in the print statment
         cursor->prefix[0],
         cursor->prefix[1],
         cursor->operating_number);
