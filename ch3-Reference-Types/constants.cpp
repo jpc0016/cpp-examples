@@ -4,7 +4,7 @@
 * constants.cpp
 *
 * Use cases of const; pages 82 - 83
-* Listings 3-14 - 3-17
+* Listing 3-14
 *
 */
 

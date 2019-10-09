@@ -5,7 +5,8 @@
 *
 * Use 'this' in structure; page 81 and 82
 * marking methods as const
-* Listing 3-13
+* Using member initializer lists
+* Listing 3-13, 3-15 - 3-18
 *
 * ClockOfTheLongNow reused from member-of-pointer.cpp and references.cpp
 */
@@ -49,7 +50,7 @@ struct ClockOfTheLongNow {
 
   // Add is_leap_year() constant method
   // This function relies on get_year() being a constant method because clock is being passed
-  // as a constant reference 
+  // as a constant reference
   bool is_leap_year(const ClockOfTheLongNow& clock){
     if (clock.get_year() % 4 > 0) return false;
     if (clock.get_year() % 100 > 0) return true;
@@ -61,6 +62,23 @@ struct ClockOfTheLongNow {
 private:
   int year;
 };
+
+
+// Listing 3-17
+// Initialize structure with constant member variable
+// Value of 'name' cannot change
+struct Avout {
+  const char* name = "Erasmus";
+  ClockOfTheLongNow apert;
+
+};
+
+
+// If you pass the struct Avout as a constant, nothing can be changed within avout
+// Does not compile for this reason alone.  Also add_year() is not a member of struct ClockOfTheLongNow
+void does_not_compile(const Avout& avout){
+  avout.apert.add_year();
+}
 
 
 // Modify add_year() and move it outside struct ClockOfTheLongNow
