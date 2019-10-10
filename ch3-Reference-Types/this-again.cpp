@@ -3,7 +3,7 @@
 *
 * this-again.cpp
 *
-* Use 'this' in structure; page 81 and 82
+* Use 'this' in structure; pages 81 - 84
 * marking methods as const
 * Using member initializer lists
 * Listing 3-13, 3-15 - 3-18
@@ -67,18 +67,39 @@ private:
 // Listing 3-17
 // Initialize structure with constant member variable
 // Value of 'name' cannot change
-struct Avout {
-  const char* name = "Erasmus";
-  ClockOfTheLongNow apert;
+// struct Avout {
+//   const char* name = "Erasmus";
+//   ClockOfTheLongNow apert;
+// };
 
+// Listing 3-18
+// Member initializer lists
+// Place a ':' after the argument list in a constructor.  Braced initialization allows
+// member variables 'name' and 'apert' to be initialized to whatever you input
+struct Avout {
+
+  // Had to change year_of_apert to type 'int' for program to compile
+  // Might submit as errata
+  Avout(const char* name, int year_of_apert)
+  : name { name }, apert { year_of_apert } {
+  }
+
+  void announce() const {
+    printf("My name is %s and my next apert is %d.\n", name, apert.get_year());
+  }
+  const char* name;
+  ClockOfTheLongNow apert;
 };
+
+
+
 
 
 // If you pass the struct Avout as a constant, nothing can be changed within avout
 // Does not compile for this reason alone.  Also add_year() is not a member of struct ClockOfTheLongNow
-void does_not_compile(const Avout& avout){
-  avout.apert.add_year();
-}
+// void does_not_compile(const Avout& avout){
+//   avout.apert.add_year();
+// }
 
 
 // Modify add_year() and move it outside struct ClockOfTheLongNow
@@ -102,6 +123,13 @@ int main(){
 
   // Print result of add_year()
   printf("The year is %d.\n", clock.get_year());
+
+  // Listing 3-18 Method initializer list
+  // This is braced initialization
+  Avout raz{ "Erasmus", 3010};
+  Avout jad{ "Jad", 4000};
+  raz.announce();
+  jad.announce();
 
 
   return 0;
