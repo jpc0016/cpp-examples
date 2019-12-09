@@ -98,7 +98,7 @@ private:
 
 /*
 ===============================================
-begin Listing 4-20 functions
+begin Listing 4-20 function definitions
 ===============================================
 */
 
