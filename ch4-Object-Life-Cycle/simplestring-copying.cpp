@@ -1,11 +1,12 @@
 /*
 * CH4 Example
 *
-* simplestring-class.cpp
+* simplestring-copying.cpp
 *
-* Combining constructors, destructors, and exceptions; pages 107-113
+* Copy constructors; pages 117-118
+* Handles memberwise copy of fully featured classes to avoid double free
 *
-* Listing 4-14, 4-15, 4-16, 4-17, 4-18, 4-19, 4-20, 4-21
+* Listing 4-25, 4-26, 4-27
 *
 */
 

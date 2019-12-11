@@ -7,6 +7,8 @@
 *
 * Rat-thing example
 *
+* POD = Plain Old Data class
+*
 * Use 'static' or 'extern' keywords to declare
 * static variables at the same level of declared functions - global scope or
 * namespace scope
