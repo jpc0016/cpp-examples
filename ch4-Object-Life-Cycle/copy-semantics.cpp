@@ -15,7 +15,7 @@
 // #include <stdexcept>
 
 int add_one_to(int x){
-  /* argument x is taken by value
+  /* argument x is taken BY VALUE
   modification of x is isolated by caller (line 27) so original is unaffected
   */
   x++;

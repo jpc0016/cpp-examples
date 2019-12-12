@@ -1,12 +1,15 @@
 /*
 * CH4 Example
 *
-* simplestring-copying.cpp
+* copy-assignment-simplestring.cpp
 *
-* Copy constructors; pages 117-118
-* Handles memberwise copy of fully featured classes to avoid double free
+* Copy Assignment Operator; pages 119-121
+* This is the other method of making a copy in C++. Can create a copy of an
+* object and assign it to another existing object.
 *
-* Listing 4-25, 4-26, 4-27
+* syntax:   'operator='
+*
+* Listing 4-29, 4-30, 4-31
 *
 */
 
@@ -68,18 +71,23 @@ begin Listing 4-15 additions
 
   /*
   ===============================================
-  begin Listing 4-25 additions
+  begin Listing 4-29 and 4-30 additions
   ===============================================
-  */
 
-  // copy-Constructor with member initializers
-  SimpleString(const SimpleString& other)
-    : max_size{ other.max_size },           // max_size attribute of other SimpleString object assigned to current instance of max_size
-      buffer{ new char[other.max_size] },   // same with current instance of buffer. 'new char[max_size]' is original initialization of buffer
-      length{ other.length } {              // length attribute of other SimpleString object assigned to current instance of length
-      /* This is the body of constructor. It holds a strncpy statement that copies contents
-      pointed to by other.buffer into an array pointed to by current buffer instance */
-      std::strncpy(buffer, other.buffer, max_size);
+  copy-Constructor using copy assignment operator (operator=)
+  */
+  SimpleString& operator=(const SimpleString& other) {
+    if (this == &other) return *this;
+
+    const auto new_buffer = new char[other.max_size];     // allocate a new buffer of original object's size (other.max_size)
+    delete[] buffer;            // Deallocates the memory pointed to by buffer
+    buffer = new_buffer;        // copy newly allocated buffer (new_buffer) to current buffer
+    length = other.length;      // copy length of other object to new length
+    max_size = other.max_size;  // copy max_size of other object to new max_size
+    // used strncpy instead because strcpy_s is microsoft specific
+    strncpy(buffer, other.buffer, max_size);     // copy contents of other.buffer into current buffer
+
+    return *this;
   }
 
 
@@ -115,60 +123,36 @@ private:
 };
 
 
-/*
-===============================================
-begin Listing 4-27 additions
-===============================================
-
-Does not append string because SimpleString object is passed BY VALUE and not BY REFERENCE
-Use 'SimpleString& x' to pass fully featured objects. Use a const reference if you can.  See line
-51 on why you cannot use 'const'
-*/
-void foo(SimpleString& x) {
-  // below line prints if buffer is large enough and object is passed BY REFERENCE
-  x.append_line("This change is lost.");
-}
-
 int main() {
 
   /*
   ===============================================
-  begin Listing 4-26 additions
+  begin Listing 4-31 additions
   ===============================================
-
-  Creating SimpleString object 'a' then copying 'a' by initializing another
-  SimpleString object with 'a' as input.
   */
-  // SimpleString a{ 50 };                   // initializes original SimpleString object with max_size = 50
-  // a.append_line("We apologize for the");
-  // SimpleString a_copy{ a };               // uses copy-constructor with a SimpleString object (a) as input
-  // a.append_line("inconvenience.");        // appears on new line due to 'buffer[length++] = '\n';'
-  // a_copy.append_line("incontinence.");
-  //
-  // // print objects
-  // a.print("a");
-  // a_copy.print("a_copy");
+  SimpleString a{ 50 };
+  a.append_line("We apologize for the");
+  SimpleString b{ 50 };
+  b.append_line("Last message");
 
-  /*
-  ===============================================
-  More Listing 4-27 additions
-  ===============================================
+  // Show initial assignments of each object
+  a.print("a");
+  b.print("b");
 
-  Does not append string because SimpleString object is passed BY VALUE and not BY REFERENCE
-  Use 'const SimpleString& x' (a const reference) to pass fully featured objects
-  */
-  SimpleString a{ 20 };
-  foo(a);                       // passes object to foo which is accessed BY REFERENCE
-  a.print("Still empty");       // Listing 4-27 OUTPUT: 'Still empty:'
+  // Copy 'a' to 'b' and show new assignments.  Both have same statement: "We apologize for the"
+  // most important: THAT MESSAGE RESIDES IN TWO SEPARATE MEMORY LOCATIONS
+  b = a;
+  a.print("a");
+  b.print("b");
 
   /*
   OUTPUT
-  Listing 4-26
+  Listing 4-31
 
   a: We apologize for the
-  inconvenience.
-  a_copy: We apologize for the
-  incontinence.
+  b: Last message
+  a: We apologize for the
+  b: We apologize for the
   */
   return 0;
 }
