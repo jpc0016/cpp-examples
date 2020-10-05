@@ -42,7 +42,7 @@ struct Bank {
     type = new_type;
   }
 
-  void make_transfer(long from, long to, double amount){
+  void make_transfer(long from, long to, double amount) {
 
     switch(type) {
       case LoggerType::Console: {
@@ -73,7 +73,7 @@ int main() {
   bank.make_transfer(2000, 4000, 20.00);
 
   // Add in Listing 5-2
-  bank.set_logger(LoggerType::File);
+  bank.set_logger(LoggerType::File);  // set logger type to file. Now output has [file] in front.
   bank.make_transfer(3000, 2000, 75.00);
 
   /*
